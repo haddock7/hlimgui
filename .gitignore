@@ -1,0 +1,8 @@
+.vscode/
+.vs/
+Debug/
+Release/
+/cpp
+/hlimgui.hdll
+/imgui.hl
+/imgui.ini
