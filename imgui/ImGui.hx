@@ -555,4 +555,31 @@ class ImGui
     public static function getWindowContentRegionWidth() : Single {return 0;}
 	
 	public static function button(name : String, width:Single, height:Single) : Bool {return false;}
+
+	// ToolTips
+    public static function beginTooltip() {}                                                     // begin/append a tooltip window. to create full-featured tooltip (with any kind of items).
+    public static function endTooltip() {}
+	public static function setTooltip(fmt : String) {}
+	
+	// Popups
+	public static function openPopup(str_id : String) {}
+    public static function beginPopup(str_id : String, flags : ImGuiWindowFlags = 0) : Bool {return false;}
+    public static function beginPopupContextItem(str_id : String = null, mouse_button : ImGuiMouseButton = 1) : Bool {return false;}
+    public static function beginPopupContextWindow(str_id : String = null, mouse_button : ImGuiMouseButton = 1, also_over_items : Bool = true) : Bool {return false;}
+    public static function beginPopupContextVoid(str_id : String = null, mouse_button : ImGuiMouseButton= 1) : Bool {return false;}
+    public static function beginPopupModal(name : String, p_open : hl.Ref<Bool> = null, flags : ImGuiWindowFlags = 0) : Bool {return false;}
+    public static function endPopup() {}
+    public static function openPopupOnItemClick(str_id : String = null, mouse_button : ImGuiMouseButton = 1) : Bool {return false;}
+    public static function isPopupOpen(str_id : String) : Bool {return false;}
+	public static function closeCurrentPopup() {}
+	
+    // Columns
+    public static function columns(count : Int = 1, id : String = null, border : Bool = true) {}
+    public static function nextColumn() {}
+    public static function getColumnIndex() : Int {return 0;}
+    public static function getColumnWidth(column_index : Int = -1) : Single {return 0;}
+    public static function setColumnWidth(column_index : Int, width : Single) {}
+    public static function getColumnOffset(column_index : Int = -1) : Single {return 0;}
+    public static function setColumnOffset(column_index : Int, offset_x : Single) {}
+    public static function getColumnsCount() : Int {return 0;}
 }

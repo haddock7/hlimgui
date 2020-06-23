@@ -17,13 +17,13 @@ HL_PRIM bool HL_NAME(is_window_collapsed)()
 
 HL_PRIM bool HL_NAME(is_window_focused)(ImGuiFocusedFlags* flags)
 {
-	return ImGui::IsWindowFocused(flags != nullptr ? *flags : 0);
+	return ImGui::IsWindowFocused(convertPtr(flags, 0));
 }
 
 
 HL_PRIM bool HL_NAME(is_window_hovered)(ImGuiFocusedFlags* flags)
 {
-	return ImGui::IsWindowHovered(flags != nullptr ? *flags : 0);
+	return ImGui::IsWindowHovered(convertPtr(flags, 0));
 }
 
 HL_PRIM bool HL_NAME(get_window_pos)()
@@ -49,12 +49,12 @@ HL_PRIM float HL_NAME(get_window_height)()
 
 HL_PRIM void HL_NAME(set_next_window_pos)(vdynamic* pos, ImGuiCond* cond, vdynamic* pivot)
 {
-	ImGui::SetNextWindowPos(getImVec2(pos), cond != nullptr ? *cond : 0, getImVec2(pivot));
+	ImGui::SetNextWindowPos(getImVec2(pos), convertPtr(cond, 0), getImVec2(pivot));
 }
 
 HL_PRIM void HL_NAME(set_next_window_size)(vdynamic* size, ImGuiCond* cond)
 {
-	ImGui::SetNextWindowSize(getImVec2(size), cond != nullptr ? *cond : 0);
+	ImGui::SetNextWindowSize(getImVec2(size), convertPtr(cond, 0));
 }
 
 HL_PRIM void HL_NAME(set_next_window_size_constraints)(vdynamic* size_min, vdynamic* size_max)
@@ -69,7 +69,7 @@ HL_PRIM void HL_NAME(set_next_window_content_size)(vdynamic* size)
 
 HL_PRIM void HL_NAME(set_next_window_collapsed)(bool collapsed, ImGuiCond* cond)
 {
-	ImGui::SetNextWindowCollapsed(collapsed, cond != nullptr ? *cond : 0);
+	ImGui::SetNextWindowCollapsed(collapsed, convertPtr(cond, 0));
 }
 
 HL_PRIM void HL_NAME(set_next_window_focus)()
@@ -84,17 +84,17 @@ HL_PRIM void HL_NAME(set_next_window_bg_alpha)(float alpha)
 
 HL_PRIM void HL_NAME(set_window_pos)(vdynamic* pos, ImGuiCond* cond)
 {
-	ImGui::SetWindowPos(getImVec2(pos), cond != nullptr ? *cond : 0);
+	ImGui::SetWindowPos(getImVec2(pos), convertPtr(cond, 0));
 }
 
 HL_PRIM void HL_NAME(set_window_size)(vdynamic* size, ImGuiCond* cond)
 {
-	ImGui::SetWindowSize(getImVec2(size), cond != nullptr ? *cond : 0);
+	ImGui::SetWindowSize(getImVec2(size), convertPtr(cond, 0));
 }
 
 HL_PRIM void HL_NAME(set_window_collapsed)(bool collapsed, ImGuiCond* cond)
 {
-	ImGui::SetWindowCollapsed(collapsed, cond != nullptr ? *cond : 0);
+	ImGui::SetWindowCollapsed(collapsed, convertPtr(cond, 0));
 }
 
 HL_PRIM void HL_NAME(set_window_focus)()
@@ -109,17 +109,17 @@ HL_PRIM void HL_NAME(set_window_font_scale)(float scale)
 
 HL_PRIM void HL_NAME(set_window_pos2)(vstring* name, vdynamic* pos, ImGuiCond* cond)
 {
-	ImGui::SetWindowPos(unicodeToUTF8(name).c_str(), getImVec2(pos), cond != nullptr ? *cond : 0);
+	ImGui::SetWindowPos(unicodeToUTF8(name).c_str(), getImVec2(pos), convertPtr(cond, 0));
 }
 
 HL_PRIM void HL_NAME(set_window_size2)(vstring* name, vdynamic* size, ImGuiCond* cond)
 {
-	ImGui::SetWindowSize(unicodeToUTF8(name).c_str(), getImVec2(size), cond != nullptr ? *cond : 0);
+	ImGui::SetWindowSize(unicodeToUTF8(name).c_str(), getImVec2(size), convertPtr(cond, 0));
 }
 
 HL_PRIM void HL_NAME(set_window_collapsed2)(vstring* name, bool collapsed, ImGuiCond* cond)
 {
-	ImGui::SetWindowCollapsed(unicodeToUTF8(name).c_str(), collapsed, cond != nullptr ? *cond : 0);
+	ImGui::SetWindowCollapsed(unicodeToUTF8(name).c_str(), collapsed, convertPtr(cond, 0));
 }
 
 HL_PRIM void HL_NAME(set_window_focus2)(vstring* name)

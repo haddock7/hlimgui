@@ -9,7 +9,7 @@ class Main extends hxd.App
     {
         this.drawable = new ImGuiDrawable(this.s2d);
 
-        trace(ImGui.getVersion());
+        trace('toto');
     }
 
     override function update(dt:Float)

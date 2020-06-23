@@ -23,11 +23,13 @@ std::string unicodeToUTF8(vstring* hl_string)
 		{
 			result += char(code);
 		}
-		else if (code <= 0x7FF) {
+		else if (code <= 0x7FF) 
+		{
 			result += char(0xC0 | (code >> 6));            /* 110xxxxx */
 			result += char(0x80 | (code & 0x3F));          /* 10xxxxxx */
 		}
-		else {
+		else 
+		{
 			result += char(0xE0 | (code >> 12));           /* 1110xxxx */
 			result += char(0x80 | ((code >> 6) & 0x3F));   /* 10xxxxxx */
 			result += char(0x80 | (code & 0x3F));          /* 10xxxxxx */

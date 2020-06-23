@@ -34,12 +34,12 @@ HL_PRIM void HL_NAME(show_style_editor)(vdynamic* hl_style)
 
 HL_PRIM bool HL_NAME(show_style_selector)(vstring* label)
 {
-	return ImGui::ShowStyleSelector(unicodeToUTF8(label).c_str());
+	return ImGui::ShowStyleSelector(convertString(label));
 }
 
 HL_PRIM void HL_NAME(show_font_selector)(vstring* label)
 {
-	ImGui::ShowFontSelector(unicodeToUTF8(label).c_str());
+	ImGui::ShowFontSelector(convertString(label));
 }
 
 HL_PRIM void HL_NAME(show_user_guide)()
