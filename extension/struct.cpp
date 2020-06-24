@@ -167,12 +167,24 @@ vdynamic* getHLFromImGuiStyle(const ImGuiStyle& imgui_style)
 	return style;
 }
 
-ImVec2 getImVec2(vdynamic* vec2)
+ImVec2 getImVec2(vdynamic* vec2, const ImVec2& default_value)
 {
-	ImVec2 result;
+	ImVec2 result = default_value;
 	if (vec2 != nullptr) {
 		getStructFloat(vec2, "x", result.x);
 		getStructFloat(vec2, "y", result.y);
+	}
+	return result;
+}
+
+ImVec4 getImVec4(vdynamic* vec4, const ImVec4& default_value)
+{
+	ImVec4 result = default_value;
+	if (vec4 != nullptr) {
+		getStructFloat(vec4, "x", result.x);
+		getStructFloat(vec4, "y", result.y);
+		getStructFloat(vec4, "z", result.z);
+		getStructFloat(vec4, "w", result.w);
 	}
 	return result;
 }

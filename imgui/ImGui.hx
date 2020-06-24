@@ -422,6 +422,8 @@ typedef ImEvents = {
 	alt : Bool
 }
 
+typedef ImTextureID = Int;
+
 typedef ImVec2 = {
 	x : Single,
 	y : Single
@@ -478,13 +480,6 @@ typedef ImGuiStyle = {
 @:hlNative("hlimgui")
 class ImGui
 {
-	public static function initialize(render_fn:Dynamic->Void) : Dynamic {return null;}
-	public static function setKeyState(key : Int, down : Bool) {}
-	public static function setSpecialKeyState(shift : Bool, ctrl : Bool, alt : Bool) {}
-	public static function addKeyChar(c : Int) {}
-	public static function setEvents(dt : Single, mouse_x : Single, mouse_y : Single, wheel : Single, left_click : Bool, right_click : Bool) {}
-	public static function setDisplaySize(display_width:Int, display_height:Int) {}
-
 	// Context
     public static function createContext() : hl.Bytes {return null;}
     public static function destroyContext(ctx : hl.Bytes = null) {}
@@ -554,10 +549,56 @@ class ImGui
     public static function getWindowContentRegionMax() : ExtDynamic<ImVec2> {return null;}
     public static function getWindowContentRegionWidth() : Single {return 0;}
 	
-	public static function button(name : String, width:Single, height:Single) : Bool {return false;}
 
+	// Cursor / Layout
+    public static function Separator() {}
+    public static function SameLine(offset_from_start_x : Single = 0.0, spacing : Single = -1.0) {}
+    public static function NewLine() {}
+    public static function Spacing() {}
+    public static function Dummy(size : ExtDynamic<ImVec2>) {}
+    public static function Indent(indent_w : Single = 0.0) {}
+    public static function Unindent(indent_w : Single = 0.0) {}
+    public static function BeginGroup() {}
+    public static function EndGroup() {}
+    public static function GetCursorPos() : ExtDynamic<ImVec2> {return null;}
+    public static function GetCursorPosX() : Single {return 0;}
+    public static function GetCursorPosY() : Single {return 0;}
+    public static function SetCursorPos(local_pos : ExtDynamic<ImVec2>) {}
+    public static function SetCursorPosX(local_x : Single) {}
+    public static function SetCursorPosY(local_y : Single) {}
+    public static function GetCursorStartPos() : ExtDynamic<ImVec2> {return null;}
+    public static function GetCursorScreenPos() : ExtDynamic<ImVec2> {return null;}
+    public static function SetCursorScreenPos(pos : ExtDynamic<ImVec2>) {}
+    public static function AlignTextToFramePadding() {}
+    public static function GetTextLineHeight() : Single {return 0;}
+    public static function GetTextLineHeightWithSpacing() : Single {return 0;}
+    public static function GetFrameHeight() : Single {return 0;}
+	public static function GetFrameHeightWithSpacing() : Single {return 0;}
+
+	// ID stack/scopes
+	public static function PushID(str_id : String) {}
+    public static function PushID2(str_id_begin : String, str_id_end : String) {}
+    public static function PushID3(int_id : Int) {}
+    public static function PopID() {}
+    public static function GetID(str_id : String) : Int {return 0;}
+    public static function GetID2(str_id_begin : String, str_id_end : String) : Int {return 0;}
+
+	// Widgets: Main
+	public static function button(name : String, size : ExtDynamic<ImVec2>) : Bool {return false;}
+	public static function SmallButton(label : String) : Bool {return false;}
+    public static function InvisibleButton(str_id : String, size : ExtDynamic<ImVec2>) : Bool {return false;}
+    public static function ArrowButton(str_id : String, dir : ImGuiDir) : Bool {return false;}
+    public static function Image(user_texture_id : ImTextureID, size : ExtDynamic<ImVec2>, uv0 : ExtDynamic<ImVec2> = null, uv1 : ExtDynamic<ImVec2> = null, tint_col : ExtDynamic<ImVec4> = null, border_col : ExtDynamic<ImVec4> = null) {}
+    public static function ImageButton(user_texture_id : ImTextureID, size : ExtDynamic<ImVec2>, uv0 : ExtDynamic<ImVec2> = null,  uv1 : ExtDynamic<ImVec2> = null, frame_padding : Int = -1, bg_col : ExtDynamic<ImVec4> = null, tint_col : ExtDynamic<ImVec4> = null) : Bool {return false;}
+    public static function Checkbox(label : String, v : hl.Ref<Bool>) : Bool {return false;}
+    public static function CheckboxFlags(label : String, flags : hl.Ref<Int>, flags_value : Int) : Bool {return false;}
+    public static function RadioButton(label : String, active : Bool) : Bool {return false;}
+    public static function RadioButton2(label : String, v : hl.Ref<Int>, v_button : Int) : Bool {return false;}
+    public static function ProgressBar(fraction : Single, size_arg : ExtDynamic<ImVec2> = null, overlay : String = null) {}
+	public static function Bullet() {}
+	
 	// ToolTips
-    public static function beginTooltip() {}                                                     // begin/append a tooltip window. to create full-featured tooltip (with any kind of items).
+    public static function beginTooltip() {}
     public static function endTooltip() {}
 	public static function setTooltip(fmt : String) {}
 	
@@ -582,4 +623,13 @@ class ImGui
     public static function getColumnOffset(column_index : Int = -1) : Single {return 0;}
     public static function setColumnOffset(column_index : Int, offset_x : Single) {}
     public static function getColumnsCount() : Int {return 0;}
+
+	// internal functions
+	public static function initialize(render_fn:Dynamic->Void) : Dynamic {return null;}
+	public static function setFontTexture(texture_id : Int) {}
+	public static function setKeyState(key : Int, down : Bool) {}
+	public static function setSpecialKeyState(shift : Bool, ctrl : Bool, alt : Bool) {}
+	public static function addKeyChar(c : Int) {}
+	public static function setEvents(dt : Single, mouse_x : Single, mouse_y : Single, wheel : Single, left_click : Bool, right_click : Bool) {}
+	public static function setDisplaySize(display_width:Int, display_height:Int) {}
 }

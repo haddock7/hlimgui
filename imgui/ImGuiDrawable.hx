@@ -8,7 +8,6 @@ private class ImGuiDrawableBuffers {
 
 	public static final instance = new ImGuiDrawableBuffers();
 
-	public var font_texture(default, null) : Texture;
 	public var vertex_buffers(default, null) : Array<h3d.Buffer> = [];
 	public var index_buffers(default, null) : Array<{
 		texture_id:Int, 
@@ -17,6 +16,8 @@ private class ImGuiDrawableBuffers {
 		buffer:h3d.Indexes}> = [];
 
 	private var initialized : Bool;
+	private var textures : Array<Texture>;
+	private var font_texture : Texture;
 
 	public function initialize() {
 		if (this.initialized) {
@@ -27,12 +28,13 @@ private class ImGuiDrawableBuffers {
 
 		// create font texture
 		var texture_size = font_info.width * font_info.height * 4;
-		this.font_texture =  Texture.fromPixels(new hxd.Pixels(
+		var font_texture_id = registerTexture(Texture.fromPixels(new hxd.Pixels(
 			font_info.width, 
 			font_info.height, 
 			font_info.buffer.toBytes(texture_size),
-			hxd.PixelFormat.RGBA));
-
+			hxd.PixelFormat.RGBA)));
+		ImGui.setFontTexture(font_texture_id);
+		
 		this.initialized = true;
 	}
 
@@ -51,6 +53,16 @@ private class ImGuiDrawableBuffers {
 		this.font_texture = null;
 
 		this.initialized = false;
+	}
+
+	public function registerTexture(texture : Texture) : Int {
+		var texture_id = this.textures.length;
+		this.textures.push(texture);
+		return texture_id + 1;
+	}
+
+	public function getTexture(texture_id) : Texture {
+		return this.textures[texture_id-1];
 	}
 
 	private function new() {
@@ -154,6 +166,7 @@ class ImGuiDrawable extends h2d.Drawable {
 	var mouse_delta : Float;
 	var keycode_map : Map<Int,Int>;
 	var wheel_inverted : Bool;
+	var textures : Array<Texture>;
 
 	public function new(?parent) {
 		super(parent);
@@ -247,7 +260,7 @@ class ImGuiDrawable extends h2d.Drawable {
 
 		for (i in 0...index_buffers.length) {
 			var index_buffer = index_buffers[i];
-			if (ctx.beginDrawObject(this,  index_buffer.texture_id == 0 ? this.empty_tile.getTexture() : ImGuiDrawableBuffers.instance.font_texture)) {
+			if (ctx.beginDrawObject(this,  index_buffer.texture_id == 0 ? this.empty_tile.getTexture() : ImGuiDrawableBuffers.instance.getTexture(index_buffer.texture_id))) {
 				var clip_rect = index_buffer.clip_rect;
 				ctx.engine.setRenderZone(clip_rect.x, clip_rect.y, clip_rect.width, clip_rect.height);
 				ctx.engine.renderIndexed(vertex_buffers[index_buffer.vertex_buffer_id], index_buffer.buffer);

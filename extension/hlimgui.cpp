@@ -132,7 +132,6 @@ HL_PRIM vdynamic* HL_NAME(initialize)(vclosure* render_fn)
 	hl_dyn_seti(font_info, hl_hash_utf8("width"), &hlt_i32, width);
 	hl_dyn_seti(font_info, hl_hash_utf8("height"), &hlt_i32, height);
 
-	io.Fonts->TexID = 1;
 	io.Fonts->ClearInputData();
 	io.Fonts->ClearTexData();
 
@@ -142,6 +141,12 @@ HL_PRIM vdynamic* HL_NAME(initialize)(vclosure* render_fn)
 	}
 
 	return font_info;
+}
+
+HL_PRIM void HL_NAME(set_font_texture)(int texture_id)
+{
+	ImGuiIO& io = ImGui::GetIO();
+	io.Fonts->SetTexID(texture_id);
 }
 
 HL_PRIM void HL_NAME(set_key_state)(int key, bool down)
@@ -201,6 +206,7 @@ HL_PRIM void HL_NAME(render)()
 }
 
 DEFINE_PRIM(_DYN, initialize, _FUN(_VOID, _DYN));
+DEFINE_PRIM(_VOID, set_font_texture, _I32);
 DEFINE_PRIM(_VOID, set_key_state, _I32 _BOOL);
 DEFINE_PRIM(_VOID, add_key_char, _I32);
 DEFINE_PRIM(_VOID, set_events, _F32 _F32 _F32 _F32 _BOOL _BOOL);
@@ -211,9 +217,3 @@ DEFINE_PRIM(_DYN, get_style, _NO_ARG);
 DEFINE_PRIM(_VOID, new_frame, _NO_ARG);
 DEFINE_PRIM(_VOID, end_frame, _NO_ARG);
 DEFINE_PRIM(_VOID, render, _NO_ARG);
-
-HL_PRIM bool HL_NAME(button)(vstring* label, float width, float height)
-{
-	return ImGui::Button(unicodeToUTF8(label).c_str(), ImVec2(width, height));
-}
-DEFINE_PRIM(_BOOL, button, _STRING _F32 _F32);
