@@ -1,4 +1,3 @@
-.vscode/
 .vs/
 Debug/
 Release/
@@ -6,4 +5,3 @@ Release/
 /hlimgui.hdll
 /imgui.hl
 /imgui.ini
-/extension/build

@@ -49,5 +49,13 @@
     <ClCompile Include="demo.cpp" />
     <ClCompile Include="struct.cpp" />
     <ClCompile Include="windows_region.cpp" />
+    <ClCompile Include="parameters_stacks.cpp" />
+    <ClCompile Include="windows_scrolling.cpp" />
+    <ClCompile Include="columns.cpp" />
+    <ClCompile Include="popup.cpp" />
+    <ClCompile Include="tooltips.cpp" />
+    <ClCompile Include="widgets_main.cpp" />
+    <ClCompile Include="id.cpp" />
+    <ClCompile Include="cursor.cpp" />
   </ItemGroup>
 </Project>

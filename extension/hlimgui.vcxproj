@@ -173,18 +173,26 @@
     <ClInclude Include="imgui\imstb_truetype.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="columns.cpp" />
+    <ClCompile Include="cursor.cpp" />
     <ClCompile Include="hlimgui.cpp" />
     <ClCompile Include="context.cpp" />
     <ClCompile Include="convert.cpp" />
     <ClCompile Include="demo.cpp" />
+    <ClCompile Include="id.cpp" />
+    <ClCompile Include="parameters_stacks.cpp" />
+    <ClCompile Include="popup.cpp" />
     <ClCompile Include="struct.cpp" />
     <ClCompile Include="imgui\imgui.cpp" />
     <ClCompile Include="imgui\imgui_demo.cpp" />
     <ClCompile Include="imgui\imgui_draw.cpp" />
     <ClCompile Include="imgui\imgui_widgets.cpp" />
     <ClCompile Include="styles.cpp" />
+    <ClCompile Include="tooltips.cpp" />
+    <ClCompile Include="widgets_main.cpp" />
     <ClCompile Include="windows.cpp" />
     <ClCompile Include="windows_region.cpp" />
+    <ClCompile Include="windows_scrolling.cpp" />
     <ClCompile Include="windows_utilities.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -423,6 +423,7 @@ typedef ImEvents = {
 }
 
 typedef ImTextureID = Int;
+typedef ImU32 = Int;
 
 typedef ImVec2 = {
 	x : Single,
@@ -513,10 +514,13 @@ class ImGui
 	// windows
     public static function begin(name : String, open : hl.Ref<Bool> = null, flags : ImGuiWindowFlags = 0) : Bool {return false;}
 	public static function end() {}
+
+	// Child windows
     public static function beginChild(str_id : String, size : ExtDynamic<ImVec2> = null, border : Bool = false, flags : ImGuiWindowFlags = 0) : Bool {return false;}
     public static function beginChild2(id : Int, size : ExtDynamic<ImVec2> = null, border : Bool = false, flags : ImGuiWindowFlags = 0) : Bool {return false;}
 	public static function endChild() {}
 	
+	// Windows utilities
 	public static function isWindowAppearing() : Bool {return false;}
     public static function isWindowCollapsed() : Bool {return false;}
     public static function isWindowFocused(flags : ImGuiFocusedFlags = 0) {return false;}
@@ -543,59 +547,95 @@ class ImGui
     public static function setWindowCollapsed2(name : String, collapsed : Bool, cond : ImGuiCond = 0) {}
 	public static function setWindowFocus2(name : String) {}
 	
+	// Content region
 	public static function getContentRegionMax() : ExtDynamic<ImVec2> {return null;}
     public static function getContentRegionAvail() : ExtDynamic<ImVec2> {return null;}
     public static function getWindowContentRegionMin() : ExtDynamic<ImVec2> {return null;}
     public static function getWindowContentRegionMax() : ExtDynamic<ImVec2> {return null;}
-    public static function getWindowContentRegionWidth() : Single {return 0;}
+	public static function getWindowContentRegionWidth() : Single {return 0;}
 	
+	// Windows Scrolling
+	public static function getScrollX() : Single {return 0;}
+    public static function getScrollY() : Single {return 0;}
+    public static function getScrollMaxX() : Single {return 0;}
+    public static function getScrollMaxY() : Single {return 0;}
+    public static function setScrollX(scroll_x : Single) {}
+    public static function setScrollY(scroll_y : Single) {}
+    public static function setScrollHereX(center_x_ratio : Single = 0.5) {}
+    public static function setScrollHereY(center_y_ratio : Single = 0.5) {}
+    public static function setScrollFromPosX(local_x : Single, center_x_ratio : Single = 0.5) {}
+	public static function setScrollFromPosY(local_y : Single, center_y_ratio : Single = 0.5) {}	
+	
+	// Parameters stacks
+    public static function pushStyleColor(idx : ImGuiCol, col : ImU32) {}
+    public static function pushStyleColor2(idx : ImGuiCol, col : ExtDynamic<ImVec4>) {}
+    public static function popStyleColor(count : Int = 1) {}
+    public static function pushStyleVar(idx : ImGuiStyleVar, val : Single) {}
+    public static function pushStyleVar2(idx : ImGuiStyleVar, val : ExtDynamic<ImVec2>) {}
+    public static function popStyleVar(count : Int = 1) {}
+    public static function getStyleColorVec4(idx : ImGuiCol) : ExtDynamic<ImVec4> {return null;}
+    public static function getFontSize() : Single {return 0;}
+    public static function getFontTexUvWhitePixel() : ExtDynamic<ImVec2> {return null;}
+    public static function getColorU32(idx : ImGuiCol, alpha_mul : Single = 1.0) : ImU32 {return 0;}
+    public static function getColorU322(col : ExtDynamic<ImVec4>) : ImU32 {return 0;}
+    public static function getColorU323(col : ImU32) : ImU32 {return 0;}
+    public static function pushItemWidth(item_width : Single) {}
+    public static function popItemWidth() {}
+    public static function setNextItemWidth(item_width : Single) {}
+    public static function calcItemWidth() : Single {return 0;}
+    public static function pushTextWrapPos(wrap_local_pos_x : Single = 0.0) {}
+    public static function popTextWrapPos() {}
+    public static function pushAllowKeyboardFocus(allow_keyboard_focus : Bool) {}
+    public static function popAllowKeyboardFocus() {}
+    public static function pushButtonRepeat(repeat : Bool) {}
+    public static function popButtonRepeat() {}
 
 	// Cursor / Layout
-    public static function Separator() {}
-    public static function SameLine(offset_from_start_x : Single = 0.0, spacing : Single = -1.0) {}
-    public static function NewLine() {}
-    public static function Spacing() {}
-    public static function Dummy(size : ExtDynamic<ImVec2>) {}
-    public static function Indent(indent_w : Single = 0.0) {}
-    public static function Unindent(indent_w : Single = 0.0) {}
-    public static function BeginGroup() {}
-    public static function EndGroup() {}
-    public static function GetCursorPos() : ExtDynamic<ImVec2> {return null;}
-    public static function GetCursorPosX() : Single {return 0;}
-    public static function GetCursorPosY() : Single {return 0;}
-    public static function SetCursorPos(local_pos : ExtDynamic<ImVec2>) {}
-    public static function SetCursorPosX(local_x : Single) {}
-    public static function SetCursorPosY(local_y : Single) {}
-    public static function GetCursorStartPos() : ExtDynamic<ImVec2> {return null;}
-    public static function GetCursorScreenPos() : ExtDynamic<ImVec2> {return null;}
-    public static function SetCursorScreenPos(pos : ExtDynamic<ImVec2>) {}
-    public static function AlignTextToFramePadding() {}
-    public static function GetTextLineHeight() : Single {return 0;}
-    public static function GetTextLineHeightWithSpacing() : Single {return 0;}
-    public static function GetFrameHeight() : Single {return 0;}
-	public static function GetFrameHeightWithSpacing() : Single {return 0;}
+    public static function separator() {}
+    public static function sameLine(offset_from_start_x : Single = 0.0, spacing : Single = -1.0) {}
+    public static function newLine() {}
+    public static function spacing() {}
+    public static function dummy(size : ExtDynamic<ImVec2>) {}
+    public static function indent(indent_w : Single = 0.0) {}
+    public static function unindent(indent_w : Single = 0.0) {}
+    public static function beginGroup() {}
+    public static function endGroup() {}
+    public static function getCursorPos() : ExtDynamic<ImVec2> {return null;}
+    public static function getCursorPosX() : Single {return 0;}
+    public static function getCursorPosY() : Single {return 0;}
+    public static function setCursorPos(local_pos : ExtDynamic<ImVec2>) {}
+    public static function setCursorPosX(local_x : Single) {}
+    public static function setCursorPosY(local_y : Single) {}
+    public static function getCursorStartPos() : ExtDynamic<ImVec2> {return null;}
+    public static function getCursorScreenPos() : ExtDynamic<ImVec2> {return null;}
+    public static function setCursorScreenPos(pos : ExtDynamic<ImVec2>) {}
+    public static function alignTextToFramePadding() {}
+    public static function getTextLineHeight() : Single {return 0;}
+    public static function getTextLineHeightWithSpacing() : Single {return 0;}
+    public static function getFrameHeight() : Single {return 0;}
+	public static function getFrameHeightWithSpacing() : Single {return 0;}
 
 	// ID stack/scopes
-	public static function PushID(str_id : String) {}
-    public static function PushID2(str_id_begin : String, str_id_end : String) {}
-    public static function PushID3(int_id : Int) {}
-    public static function PopID() {}
-    public static function GetID(str_id : String) : Int {return 0;}
-    public static function GetID2(str_id_begin : String, str_id_end : String) : Int {return 0;}
+	public static function pushID(str_id : String) {}
+    public static function pushID2(str_id_begin : String, str_id_end : String) {}
+    public static function pushID3(int_id : Int) {}
+    public static function popID() {}
+    public static function getID(str_id : String) : Int {return 0;}
+    public static function getID2(str_id_begin : String, str_id_end : String) : Int {return 0;}
 
 	// Widgets: Main
 	public static function button(name : String, size : ExtDynamic<ImVec2>) : Bool {return false;}
-	public static function SmallButton(label : String) : Bool {return false;}
-    public static function InvisibleButton(str_id : String, size : ExtDynamic<ImVec2>) : Bool {return false;}
-    public static function ArrowButton(str_id : String, dir : ImGuiDir) : Bool {return false;}
-    public static function Image(user_texture_id : ImTextureID, size : ExtDynamic<ImVec2>, uv0 : ExtDynamic<ImVec2> = null, uv1 : ExtDynamic<ImVec2> = null, tint_col : ExtDynamic<ImVec4> = null, border_col : ExtDynamic<ImVec4> = null) {}
-    public static function ImageButton(user_texture_id : ImTextureID, size : ExtDynamic<ImVec2>, uv0 : ExtDynamic<ImVec2> = null,  uv1 : ExtDynamic<ImVec2> = null, frame_padding : Int = -1, bg_col : ExtDynamic<ImVec4> = null, tint_col : ExtDynamic<ImVec4> = null) : Bool {return false;}
-    public static function Checkbox(label : String, v : hl.Ref<Bool>) : Bool {return false;}
-    public static function CheckboxFlags(label : String, flags : hl.Ref<Int>, flags_value : Int) : Bool {return false;}
-    public static function RadioButton(label : String, active : Bool) : Bool {return false;}
-    public static function RadioButton2(label : String, v : hl.Ref<Int>, v_button : Int) : Bool {return false;}
-    public static function ProgressBar(fraction : Single, size_arg : ExtDynamic<ImVec2> = null, overlay : String = null) {}
-	public static function Bullet() {}
+	public static function smallButton(label : String) : Bool {return false;}
+    public static function invisibleButton(str_id : String, size : ExtDynamic<ImVec2>) : Bool {return false;}
+    public static function arrowButton(str_id : String, dir : ImGuiDir) : Bool {return false;}
+    public static function image(user_texture_id : ImTextureID, size : ExtDynamic<ImVec2>, uv0 : ExtDynamic<ImVec2> = null, uv1 : ExtDynamic<ImVec2> = null, tint_col : ExtDynamic<ImVec4> = null, border_col : ExtDynamic<ImVec4> = null) {}
+    public static function imageButton(user_texture_id : ImTextureID, size : ExtDynamic<ImVec2>, uv0 : ExtDynamic<ImVec2> = null,  uv1 : ExtDynamic<ImVec2> = null, frame_padding : Int = -1, bg_col : ExtDynamic<ImVec4> = null, tint_col : ExtDynamic<ImVec4> = null) : Bool {return false;}
+    public static function checkbox(label : String, v : hl.Ref<Bool>) : Bool {return false;}
+    public static function checkboxFlags(label : String, flags : hl.Ref<Int>, flags_value : Int) : Bool {return false;}
+    public static function radioButton(label : String, active : Bool) : Bool {return false;}
+    public static function radioButton2(label : String, v : hl.Ref<Int>, v_button : Int) : Bool {return false;}
+    public static function progressBar(fraction : Single, size_arg : ExtDynamic<ImVec2> = null, overlay : String = null) {}
+	public static function bullet() {}
 	
 	// ToolTips
     public static function beginTooltip() {}

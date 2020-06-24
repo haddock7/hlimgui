@@ -192,7 +192,17 @@ ImVec4 getImVec4(vdynamic* vec4, const ImVec4& default_value)
 vdynamic* getHLFromImVec2(ImVec2 value)
 {
 	vdynamic* vec2 = (vdynamic*)hl_alloc_dynobj();
-	getStructFloat(vec2, "x", value.x);
-	getStructFloat(vec2, "y", value.y);
+	setStructFloat(vec2, "x", value.x);
+	setStructFloat(vec2, "y", value.y);
 	return vec2;
+}
+
+vdynamic* getHLFromImVec4(ImVec4 value)
+{
+	vdynamic* vec4 = (vdynamic*)hl_alloc_dynobj();
+	setStructFloat(vec4, "x", value.x);
+	setStructFloat(vec4, "y", value.y);
+	setStructFloat(vec4, "z", value.z);
+	setStructFloat(vec4, "w", value.w);
+	return vec4;
 }

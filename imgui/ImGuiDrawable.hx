@@ -16,7 +16,7 @@ private class ImGuiDrawableBuffers {
 		buffer:h3d.Indexes}> = [];
 
 	private var initialized : Bool;
-	private var textures : Array<Texture>;
+	private var textures : Array<Texture> = [];
 	private var font_texture : Texture;
 
 	public function initialize() {
@@ -49,8 +49,10 @@ private class ImGuiDrawableBuffers {
 		}
 		this.vertex_buffers = [];
 
-		this.font_texture.dispose();
-		this.font_texture = null;
+		for (texture in this.textures) {
+			texture.dispose();
+		}
+		this.textures = [];
 
 		this.initialized = false;
 	}
