@@ -623,6 +623,14 @@ class ImGui
     public static function getID(str_id : String) : Int {return 0;}
     public static function getID2(str_id_begin : String, str_id_end : String) : Int {return 0;}
 
+    // Widgets: Text
+    public static function text(text : String) {}
+    public static function textColored(col : ExtDynamic<ImVec4>, fmt : String) {}
+    public static function textDisabled(text : String) {}
+    public static function textWrapped(text : String) {}
+    public static function labelText(label : String, text : String) {}
+    public static function bulletText(text : String) {}
+
 	// Widgets: Main
 	public static function button(name : String, size : ExtDynamic<ImVec2>) : Bool {return false;}
 	public static function smallButton(label : String) : Bool {return false;}
@@ -636,6 +644,39 @@ class ImGui
     public static function radioButton2(label : String, v : hl.Ref<Int>, v_button : Int) : Bool {return false;}
     public static function progressBar(fraction : Single, size_arg : ExtDynamic<ImVec2> = null, overlay : String = null) {}
 	public static function bullet() {}
+
+    // Widgets: Combo Box
+    public static function beginCombo(label : String, preview_value : String, flags : ImGuiComboFlags = 0) : Bool {return false;}
+    public static function endCombo() {}
+    public static function combo(label : String, current_item : hl.Ref<Int>, items : hl.NativeArray<String>, popup_max_height_in_items : Int = -1) : Bool {return false;}
+	public static function combo2(label : String, current_item : hl.Ref<Int>, items_separated_by_zeros : String, popup_max_height_in_items : Int = -1) : Bool {return false;}
+	
+    // Widgets: Drags
+    public static function dragFloat(label : String, v : hl.NativeArray<Single>, v_speed : Single = 1.0, v_min : Single = 0.0, v_max : Single = 0.0, format : String = "%.3f", power : Single = 1.0) : Bool {return false;}
+    public static function dragFloatRange2(label : String, v_current_min : hl.Ref<Single>, v_current_max : hl.Ref<Single>, v_speed : Single = 1.0, v_min : Single = 0.0, v_max : Single = 0.0, format : String = "%.3f", format_max : String = null, power : Single = 1.0) : Bool {return false;}
+    public static function dragInt(label : String, v : hl.NativeArray<Int>, v_speed : Single = 1.0, v_min : Single = 0.0, v_max : Single = 0.0, format : String = "%.3f") : Bool {return false;}
+	public static function dragIntRange2(label : String, v_current_min : hl.Ref<Int>, v_current_max : hl.Ref<Int>, v_speed : Single = 1.0, v_min : Single = 0.0, v_max : Single = 0.0, format : String = "%.3f", format_max : String = null) : Bool {return false;}
+	
+	// Widgets: Sliders
+    public static function sliderFloat(label : String, v : hl.NativeArray<Single>, v_min : Single, v_max : Single, format : String = "%.3f", power : Single = 1.0) : Bool {return false;}
+    public static function sliderAngle(label : String, v_rad : hl.Ref<Single>, v_degrees_min : Single = -360.0, v_degrees_max : Single = 360.0, format : String = "%.0f deg") : Bool {return false;}
+    public static function sliderInt(label : String, v : hl.NativeArray<Int>, v_min : Int, v_max : Int, format : String = "%d") : Bool {return false;}
+    public static function vSliderFloat(label : String, size : ExtDynamic<ImVec2>, v : hl.Ref<Single>, v_min : Single, v_max : Single, format : String = "%.3f", power : Single = 1.0) : Bool {return false;}
+	public static function vSliderInt(label : String, size : ExtDynamic<ImVec2>, v : hl.Ref<Int>, v_min : Int, v_max : Int, format : String = "%d") : Bool {return false;}
+	
+    // Widgets: Input with Keyboard
+    public static function inputText(label : String, buf : hl.Bytes, buf_size : Int, flags : ImGuiInputTextFlags = 0) : Bool {return false;}
+    public static function inputTextMultiline(label : String, buf : hl.Bytes, buf_size : Int, size : ExtDynamic<ImVec2> = null, flags : ImGuiInputTextFlags = 0) : Bool {return false;}
+    public static function inputTextWithHint(label : String, hint : String, buf : hl.Bytes, buf_size : Int, flags : ImGuiInputTextFlags = 0) : Bool {return false;}
+    public static function inputFloat(label : String, v : hl.Ref<Single>, step : Single = 0.0, step_fast : Single = 0.0, format : String = "%.3f", flags : ImGuiInputTextFlags = 0) : Bool {return false;}
+    public static function inputFloat2(label : String, v : hl.NativeArray<Single>, format : String = "%.3f", flags : ImGuiInputTextFlags = 0) : Bool {return false;}
+    public static function inputFloat3(label : String, v : hl.NativeArray<Single>, format : String = "%.3f", flags : ImGuiInputTextFlags = 0) : Bool {return false;}
+    public static function inputFloat4(label : String, v : hl.NativeArray<Single>, format : String = "%.3f", flags : ImGuiInputTextFlags = 0) : Bool {return false;}
+    public static function inputInt(label : String, v : hl.Ref<Int>, step : Int = 1, step_fast : Int = 100, flags : ImGuiInputTextFlags = 0) : Bool {return false;}
+    public static function inputInt2(label : String, v : hl.NativeArray<Int>, flags : ImGuiInputTextFlags = 0) : Bool {return false;}
+    public static function inputInt3(label : String, v : hl.NativeArray<Int>, flags : ImGuiInputTextFlags = 0) : Bool {return false;}
+    public static function inputInt4(label : String, v : hl.NativeArray<Int>, flags : ImGuiInputTextFlags = 0) : Bool {return false;}
+    public static function inputDouble(label : String, v : hl.Ref<Float>, step : Float = 0.0, step_fast : Float = 0.0, format : String = "%.6f", flags : ImGuiInputTextFlags = 0) : Bool {return false;}
 	
 	// ToolTips
     public static function beginTooltip() {}
