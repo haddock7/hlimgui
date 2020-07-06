@@ -2,15 +2,11 @@
 
 #include <hl.h>
 #include "imgui/imgui.h"
-#include "struct.h"
-#include "convert.h"
+#include "utils.h"
 
 HL_PRIM bool HL_NAME(slider_float)(vstring* label, varray* v, float v_min, float v_max, vstring* format, float* power)
 {
-    if (v->size < 1 || v->size > 4)
-    {
-        hl_error("v parameter size must be between 1 and 4");
-    }
+    assertArraySizeRange(v, 1, 4);
 
     switch (v->size)
     {
@@ -35,10 +31,7 @@ HL_PRIM bool HL_NAME(slider_angle)(vstring* label, float* v_rad, float* v_degree
 
 HL_PRIM bool HL_NAME(slider_int)(vstring* label, varray* v, int v_min, int v_max, vstring* format)
 {
-    if (v->size < 1 || v->size > 4)
-    {
-        hl_error("v parameter size must be between 1 and 4");
-    }
+    assertArraySizeRange(v, 1, 4);
 
     switch (v->size)
     {

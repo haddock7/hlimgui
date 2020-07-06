@@ -2,7 +2,7 @@
 
 #include <hl.h>
 #include "imgui/imgui.h"
-#include "struct.h"
+#include "utils.h"
 
 HL_PRIM vdynamic* HL_NAME(get_content_region_max)()
 {

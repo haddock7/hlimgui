@@ -481,6 +481,8 @@ typedef ImGuiStyle = {
 @:hlNative("hlimgui")
 class ImGui
 {
+	public static inline var FLT_MAX = 3.402823466e+38;
+
 	// Context
     public static function createContext() : hl.Bytes {return null;}
     public static function destroyContext(ctx : hl.Bytes = null) {}
@@ -676,7 +678,41 @@ class ImGui
     public static function inputInt2(label : String, v : hl.NativeArray<Int>, flags : ImGuiInputTextFlags = 0) : Bool {return false;}
     public static function inputInt3(label : String, v : hl.NativeArray<Int>, flags : ImGuiInputTextFlags = 0) : Bool {return false;}
     public static function inputInt4(label : String, v : hl.NativeArray<Int>, flags : ImGuiInputTextFlags = 0) : Bool {return false;}
-    public static function inputDouble(label : String, v : hl.Ref<Float>, step : Float = 0.0, step_fast : Float = 0.0, format : String = "%.6f", flags : ImGuiInputTextFlags = 0) : Bool {return false;}
+	public static function inputDouble(label : String, v : hl.Ref<Float>, step : Float = 0.0, step_fast : Float = 0.0, format : String = "%.6f", flags : ImGuiInputTextFlags = 0) : Bool {return false;}
+	
+	// Widgets: Color Editor/Picker
+    public static function colorEdit3(label : String, col : hl.NativeArray<Single>, flags : ImGuiColorEditFlags = 0) : Bool {return false;}
+    public static function colorEdit4(label : String, col : hl.NativeArray<Single>,  flags : ImGuiColorEditFlags = 0) : Bool {return false;}
+    public static function colorPicker3(label : String, col : hl.NativeArray<Single>, flags : ImGuiColorEditFlags = 0) : Bool {return false;}
+    public static function colorPicker4(label : String, col : hl.NativeArray<Single>, flags : ImGuiColorEditFlags = 0, ref_col : hl.Ref<Single> = null) : Bool {return false;}
+    public static function colorButton(desc_id : String, col : ExtDynamic<ImVec4> = null, flags : ImGuiColorEditFlags = 0, size : ExtDynamic<ImVec2> = null) : Bool {return false;}
+	public static function setColorEditOptions(flags : ImGuiColorEditFlags) {}
+	
+	// Widgets: Trees
+	public static function treeNode(label : String) : Bool {return false;}
+    public static function treeNode2(str_id : String, label : String) : Bool {return false;}
+    public static function treeNodeEx(label : String, flags : ImGuiTreeNodeFlags = 0) : Bool {return false;}
+    public static function treeNodeEx2(str_id : String, flags : ImGuiTreeNodeFlags, label : String) : Bool {return false;}
+    public static function treePush(str_id : String) {}
+    public static function treePop() {}
+    public static function getTreeNodeToLabelSpacing() : Single {return 0;}
+    public static function collapsingHeader(label : String, flags : ImGuiTreeNodeFlags = 0) : Bool {return false;}
+    public static function collapsingHeader2(label : String, p_open : hl.Ref<Bool>, flags : ImGuiTreeNodeFlags = 0) : Bool {return false;}
+	public static function setNextItemOpen(is_open : Bool, cond : ImGuiCond = 0) {}
+	
+	// Widgets: Selectables
+    public static function selectable(label : String, selected : Bool = false, flags : ImGuiSelectableFlags = 0, size : ExtDynamic<ImVec2> = null) : Bool {return false;}
+	public static function selectable2(label : String, p_selected : hl.Ref<Bool>, flags : ImGuiSelectableFlags = 0, size : ExtDynamic<ImVec2> = null) : Bool {return false;}
+	
+    // Widgets: List Boxes
+    public static function listBox(label : String, current_item : hl.Ref<Int>, items : hl.NativeArray<String>, height_in_items : Int = -1) : Bool {return false;}
+    public static function listBoxHeader(label : String, size : ExtDynamic<ImVec2> = null) : Bool {return false;}
+    public static function listBoxHeader2(label : String, items_count : Int, height_in_items : Int = -1) : Bool {return false;}
+	public static function listBoxFooter() {}
+	
+	// Widgets: Data Plotting
+    public static function plotLines(label : String, values : hl.NativeArray<Single>, values_offset : Int = 0, overlay_text : String = null, scale_min : Single = FLT_MAX, scale_max : Single = FLT_MAX, graph_size : ExtDynamic<ImVec2>) {}
+    public static function plotHistogram(label : String, values : hl.NativeArray<Single>, values_offset : Int = 0, overlay_text : String = null, scale_min : Single = FLT_MAX, scale_max : Single = FLT_MAX, graph_size : ExtDynamic<ImVec2>) {}
 	
 	// ToolTips
     public static function beginTooltip() {}

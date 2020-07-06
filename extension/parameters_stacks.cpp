@@ -2,8 +2,7 @@
 
 #include <hl.h>
 #include "imgui/imgui.h"
-#include "struct.h"
-#include "convert.h"
+#include "utils.h"
 
 HL_PRIM void HL_NAME(push_style_color)(ImGuiCol idx, ImU32 col)
 {

@@ -3,8 +3,7 @@
 #include <hl.h>
 #include <vector>
 #include "imgui/imgui.h"
-#include "struct.h"
-#include "convert.h"
+#include "utils.h"
 
 HL_PRIM bool HL_NAME(begin_combo)(vstring* label, vstring* preview_value, ImGuiComboFlags* flags)
 {

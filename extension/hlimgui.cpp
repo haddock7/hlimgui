@@ -2,8 +2,7 @@
 
 #include <hl.h>
 #include "imgui/imgui.h"
-#include "convert.h"
-#include "struct.h"
+#include "utils.h"
 
 #include <string>
 

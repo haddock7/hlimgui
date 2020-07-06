@@ -2,8 +2,7 @@
 
 #include <hl.h>
 #include "imgui/imgui.h"
-#include "struct.h"
-#include "convert.h"
+#include "utils.h"
 
 HL_PRIM bool HL_NAME(input_text)(vstring* label, vbyte* buf, int buf_size, ImGuiInputTextFlags* flags)
 {
@@ -28,19 +27,19 @@ HL_PRIM bool HL_NAME(input_float)(vstring* label, float* v, float* step, float* 
 
 HL_PRIM bool HL_NAME(input_float2)(vstring* label, varray* v, vstring* format, ImGuiInputTextFlags* flags)
 {
-    if (v->size != 2) hl_error("v parameter size must be 2");
+    assertArraySize(v, 2);
     return ImGui::InputFloat2(convertString(label), hl_aptr(v,float), convertString(format), convertPtr(flags, 0));
 }
 
 HL_PRIM bool HL_NAME(input_float3)(vstring* label, varray* v, vstring* format, ImGuiInputTextFlags* flags)
 {
-    if (v->size != 3) hl_error("v parameter size must be 3");
+    assertArraySize(v, 3);
     return ImGui::InputFloat3(convertString(label), hl_aptr(v,float), convertString(format), convertPtr(flags, 0));
 }
 
 HL_PRIM bool HL_NAME(input_float4)(vstring* label, varray* v, vstring* format, ImGuiInputTextFlags* flags)
 {
-    if (v->size != 4) hl_error("v parameter size must be 4");
+    assertArraySize(v, 4);
     return ImGui::InputFloat4(convertString(label), hl_aptr(v,float), convertString(format), convertPtr(flags, 0));
 }
 
@@ -52,19 +51,19 @@ HL_PRIM bool HL_NAME(input_int)(vstring* label, int* v, int* step, int* step_fas
 
 HL_PRIM bool HL_NAME(input_int2)(vstring* label, varray* v, ImGuiInputTextFlags* flags)
 {
-    if (v->size != 2) hl_error("v parameter size must be 2");
+    assertArraySize(v, 2);
     return ImGui::InputInt2(convertString(label), hl_aptr(v,int), convertPtr(flags, 0));
 }
 
 HL_PRIM bool HL_NAME(input_int3)(vstring* label, varray* v, ImGuiInputTextFlags* flags)
 {
-    if (v->size != 3) hl_error("v parameter size must be 3");
+    assertArraySize(v, 3);
     return ImGui::InputInt3(convertString(label), hl_aptr(v,int), convertPtr(flags, 0));
 }
 
 HL_PRIM bool HL_NAME(input_int4)(vstring* label, varray* v, ImGuiInputTextFlags* flags)
 {
-    if (v->size != 4) hl_error("v parameter size must be 4");
+    assertArraySize(v, 4);
     return ImGui::InputInt4(convertString(label), hl_aptr(v,int), convertPtr(flags, 0));
 }
 
