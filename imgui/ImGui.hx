@@ -712,7 +712,22 @@ class ImGui
 	
 	// Widgets: Data Plotting
     public static function plotLines(label : String, values : hl.NativeArray<Single>, values_offset : Int = 0, overlay_text : String = null, scale_min : Single = FLT_MAX, scale_max : Single = FLT_MAX, graph_size : ExtDynamic<ImVec2>) {}
-    public static function plotHistogram(label : String, values : hl.NativeArray<Single>, values_offset : Int = 0, overlay_text : String = null, scale_min : Single = FLT_MAX, scale_max : Single = FLT_MAX, graph_size : ExtDynamic<ImVec2>) {}
+	public static function plotHistogram(label : String, values : hl.NativeArray<Single>, values_offset : Int = 0, overlay_text : String = null, scale_min : Single = FLT_MAX, scale_max : Single = FLT_MAX, graph_size : ExtDynamic<ImVec2>) {}
+	
+    // Widgets: Value() Helpers.
+    public static function valueBool(prefix : String, b : Bool) {}
+    public static function valueInt(prefix : String, v : Int) {}
+	public static function valueSingle(prefix : String, v : Single, float_format : String = null) {}
+	
+    // Widgets: Menus
+    public static function beginMenuBar() : Bool {return false;}
+    public static function endMenuBar() {}
+    public static function beginMainMenuBar() : Bool {return false;}
+    public static function endMainMenuBar() {}
+    public static function beginMenu(label : String, enabled : Bool = true) : Bool {return false;}
+    public static function endMenu() {}
+    public static function menuItem(label : String, shortcut : String = null, selected : Bool = false, enabled : Bool = true) : Bool {return false;}
+    public static function menuItem2(label : String, shortcut : String, p_selected : hl.Ref<Bool>, enabled : Bool = true) : Bool {return false;}
 	
 	// ToolTips
     public static function beginTooltip() {}
