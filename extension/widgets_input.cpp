@@ -19,7 +19,6 @@ HL_PRIM bool HL_NAME(input_text_with_hint)(vstring* label, vstring* hint, vbyte*
     return ImGui::InputTextWithHint(convertString(label), convertString(hint), (char*)buf, buf_size, convertPtr(flags, 0));
 }
 
-
 HL_PRIM bool HL_NAME(input_float)(vstring* label, float* v, float* step, float* step_fast, vstring* format, ImGuiInputTextFlags* flags)
 {
     return ImGui::InputFloat(convertString(label), v, convertPtr(step, 0.0f), convertPtr(step_fast, 0.0f), convertString(format), convertPtr(flags, 0));

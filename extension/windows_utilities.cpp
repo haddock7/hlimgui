@@ -19,7 +19,6 @@ HL_PRIM bool HL_NAME(is_window_focused)(ImGuiFocusedFlags* flags)
 	return ImGui::IsWindowFocused(convertPtr(flags, 0));
 }
 
-
 HL_PRIM bool HL_NAME(is_window_hovered)(ImGuiFocusedFlags* flags)
 {
 	return ImGui::IsWindowHovered(convertPtr(flags, 0));
@@ -44,7 +43,6 @@ HL_PRIM float HL_NAME(get_window_height)()
 {
 	return ImGui::GetWindowHeight();
 }
-
 
 HL_PRIM void HL_NAME(set_next_window_pos)(vdynamic* pos, ImGuiCond* cond, vdynamic* pivot)
 {
@@ -126,7 +124,6 @@ HL_PRIM void HL_NAME(set_window_focus2)(vstring* name)
 	ImGui::SetWindowFocus(unicodeToUTF8(name).c_str());
 }
 
-
 DEFINE_PRIM(_BOOL, is_window_appearing, _NO_ARG);
 DEFINE_PRIM(_BOOL, is_window_collapsed, _NO_ARG);
 DEFINE_PRIM(_BOOL, is_window_focused, _REF(_I32));
@@ -135,7 +132,6 @@ DEFINE_PRIM(_DYN, get_window_pos, _NO_ARG);
 DEFINE_PRIM(_DYN, get_window_size, _NO_ARG);
 DEFINE_PRIM(_F32, get_window_width, _NO_ARG);
 DEFINE_PRIM(_F32, get_window_height, _NO_ARG);
-
 DEFINE_PRIM(_VOID, set_next_window_pos, _DYN _REF(_I32) _DYN);
 DEFINE_PRIM(_VOID, set_next_window_size, _DYN _REF(_I32));
 DEFINE_PRIM(_VOID, set_next_window_size_constraints, _DYN _DYN);

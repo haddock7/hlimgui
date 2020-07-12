@@ -712,7 +712,22 @@ class ImGui
 	
 	// Widgets: Data Plotting
     public static function plotLines(label : String, values : hl.NativeArray<Single>, values_offset : Int = 0, overlay_text : String = null, scale_min : Single = FLT_MAX, scale_max : Single = FLT_MAX, graph_size : ExtDynamic<ImVec2>) {}
-    public static function plotHistogram(label : String, values : hl.NativeArray<Single>, values_offset : Int = 0, overlay_text : String = null, scale_min : Single = FLT_MAX, scale_max : Single = FLT_MAX, graph_size : ExtDynamic<ImVec2>) {}
+	public static function plotHistogram(label : String, values : hl.NativeArray<Single>, values_offset : Int = 0, overlay_text : String = null, scale_min : Single = FLT_MAX, scale_max : Single = FLT_MAX, graph_size : ExtDynamic<ImVec2>) {}
+	
+    // Widgets: Value() Helpers.
+    public static function valueBool(prefix : String, b : Bool) {}
+    public static function valueInt(prefix : String, v : Int) {}
+	public static function valueSingle(prefix : String, v : Single, float_format : String = null) {}
+	
+    // Widgets: Menus
+    public static function beginMenuBar() : Bool {return false;}
+    public static function endMenuBar() {}
+    public static function beginMainMenuBar() : Bool {return false;}
+    public static function endMainMenuBar() {}
+    public static function beginMenu(label : String, enabled : Bool = true) : Bool {return false;}
+    public static function endMenu() {}
+    public static function menuItem(label : String, shortcut : String = null, selected : Bool = false, enabled : Bool = true) : Bool {return false;}
+    public static function menuItem2(label : String, shortcut : String, p_selected : hl.Ref<Bool>, enabled : Bool = true) : Bool {return false;}
 	
 	// ToolTips
     public static function beginTooltip() {}
@@ -739,7 +754,30 @@ class ImGui
     public static function setColumnWidth(column_index : Int, width : Single) {}
     public static function getColumnOffset(column_index : Int = -1) : Single {return 0;}
     public static function setColumnOffset(column_index : Int, offset_x : Single) {}
-    public static function getColumnsCount() : Int {return 0;}
+	public static function getColumnsCount() : Int {return 0;}
+	
+	    // Tab Bars, Tabs
+	public static function beginTabBar(str_id : String, flags : ImGuiTabBarFlags = 0) : Bool {return false;}
+	public static function endTabBar() {}
+	public static function beginTabItem(label : String, p_open : hl.Ref<Bool> = null, flags : ImGuiTabItemFlags = 0) : Bool {return false;}
+	public static function endTabItem() {}
+	public static function setTabItemClosed(tab_or_docked_window_label : String) {}
+	
+	// Logging/Capture
+	public static function logToTTY(auto_open_depth : Int = -1) {}
+	public static function logToFile(auto_open_depth : Int = -1, filename : String = null) {}
+	public static function logToClipboard(auto_open_depth : Int = -1) {}
+	public static function logFinish() {}
+	public static function logButtons() {}
+	public static function logText(text : String) {}
+	
+    // Clipping
+    public static function pushClipRect(clip_rect_min : ExtDynamic<ImVec2>, clip_rect_max : ExtDynamic<ImVec2>, intersect_with_current_clip_rect : Bool) {}
+    public static function popClipRect() {}
+
+    // Focus, Activation
+    public static function setItemDefaultFocus() {}
+    public static function setKeyboardFocusHere(offset : Int = 0) {}
 
 	// internal functions
 	public static function initialize(render_fn:Dynamic->Void) : Dynamic {return null;}
