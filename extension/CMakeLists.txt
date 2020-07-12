@@ -17,6 +17,11 @@ set_target_properties(${TARGET_NAME}${TARGET_EXT}
     SUFFIX ${TARGET_EXT}
 )
 
+IF (WIN32)
+target_include_directories(${TARGET_NAME}${TARGET_EXT} PUBLIC $ENV{HASHLINKPATH}/include)
+target_link_libraries(${TARGET_NAME}${TARGET_EXT} $ENV{HASHLINKPATH}/libhl.lib)
+ENDIF()
+
 add_custom_command(TARGET ${TARGET_NAME}${TARGET_EXT} POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy ${TARGET_NAME}${TARGET_EXT} ../..
+    COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${TARGET_NAME}${TARGET_EXT}> ../..
 )
