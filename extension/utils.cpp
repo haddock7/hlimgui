@@ -242,3 +242,11 @@ vdynamic* getHLFromImVec4(ImVec4 value)
 	setStructFloat(vec4, "w", value.w);
 	return vec4;
 }
+
+vbyte* getVByteFromCStr(const char* str)
+{
+	int size = int(strlen(str) + 1);
+	vbyte* result = hl_alloc_bytes(size);
+	memcpy(result, str, size);
+	return result;
+}

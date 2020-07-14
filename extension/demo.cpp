@@ -48,11 +48,7 @@ HL_PRIM void HL_NAME(show_user_guide)()
 
 HL_PRIM vbyte* HL_NAME(get_version)()
 {
-	const char* version = ImGui::GetVersion();
-	int size = int(strlen(version) + 1);
-	vbyte* result = hl_alloc_bytes(size);
-	memcpy(result, version, size);
-	return result;
+	return getVByteFromCStr(ImGui::GetVersion());
 }
 
 DEFINE_PRIM(_VOID, show_demo_window, _REF(_BOOL));

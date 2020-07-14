@@ -424,6 +424,7 @@ typedef ImEvents = {
 
 typedef ImTextureID = Int;
 typedef ImU32 = Int;
+typedef ImGuiID = Int;
 
 typedef ImVec2 = {
 	x : Single,
@@ -756,7 +757,7 @@ class ImGui
     public static function setColumnOffset(column_index : Int, offset_x : Single) {}
 	public static function getColumnsCount() : Int {return 0;}
 	
-	    // Tab Bars, Tabs
+	// Tab Bars, Tabs
 	public static function beginTabBar(str_id : String, flags : ImGuiTabBarFlags = 0) : Bool {return false;}
 	public static function endTabBar() {}
 	public static function beginTabItem(label : String, p_open : hl.Ref<Bool> = null, flags : ImGuiTabItemFlags = 0) : Bool {return false;}
@@ -777,7 +778,48 @@ class ImGui
 
     // Focus, Activation
     public static function setItemDefaultFocus() {}
-    public static function setKeyboardFocusHere(offset : Int = 0) {}
+	public static function setKeyboardFocusHere(offset : Int = 0) {}
+	
+	// Item/Widgets Utilities
+    public static function isItemHovered(flags : ImGuiHoveredFlags = 0) : Bool {return false;}
+    public static function isItemActive() : Bool {return false;}
+    public static function isItemFocused() : Bool {return false;}
+    public static function isItemClicked(mouse_button : ImGuiMouseButton = 0) : Bool {return false;}
+    public static function isItemVisible() : Bool {return false;}
+    public static function isItemEdited() : Bool {return false;}
+    public static function isItemActivated() : Bool {return false;}
+    public static function isItemDeactivated() : Bool {return false;}
+    public static function isItemDeactivatedAfterEdit() : Bool {return false;}
+    public static function isItemToggledOpen() : Bool {return false;}
+    public static function isAnyItemHovered() : Bool {return false;}
+    public static function isAnyItemActive() : Bool {return false;}
+    public static function isAnyItemFocused() : Bool {return false;}
+    public static function getItemRectMin() : ExtDynamic<ImVec2> {return null;}
+    public static function getItemRectMax() : ExtDynamic<ImVec2> {return null;}
+    public static function getItemRectSize() : ExtDynamic<ImVec2> {return null;}
+    public static function setItemAllowOverlap() {}
+
+    // Miscellaneous Utilities
+    public static function isRectVisible(size : ExtDynamic<ImVec2>) : Bool {return false;}
+    public static function isRectVisible2(rect_min : ExtDynamic<ImVec2>, rect_max : ExtDynamic<ImVec2>) : Bool {return false;}
+    public static function getTime() : Float {return 0;}
+    public static function getFrameCount() : Int {return 0;}
+	static function get_style_color_name(idx : ImGuiCol) : hl.Bytes {return null;}
+    public static function getStyleColorName(idx : ImGuiCol) : String {
+		return @:privateAccess String.fromUTF8(get_style_color_name(idx));
+	}
+    public static function calcListClipping(items_count : Int, items_height : Single, out_items_display_start : hl.Ref<Int>, out_items_display_end : hl.Ref<Int>) {}
+    public static function beginChildFrame(id : ImGuiID, size : ExtDynamic<ImVec2>, flags : ImGuiWindowFlags = 0) : Bool {return false;}
+	public static function endChildFrame() {}
+	
+	// Text Utilities
+	public static function calcTextSize(text : String, text_end : String = null, hide_text_after_double_hash : Bool = false, wrap_width : Single = -1.0) : ExtDynamic<ImVec2> {return null;}
+
+    // Color Utilities
+    public static function colorConvertU32ToFloat4(color : ImU32) : ExtDynamic<ImVec2> {return null;}
+    public static function colorConvertFloat4ToU32(color : ExtDynamic<ImVec2>) : ImU32 {return 0;}
+    public static function colorConvertRGBtoHSV(r : Single, g : Single, b : Single, out_h : hl.Ref<Single>, out_s : hl.Ref<Single>, out_v : hl.Ref<Single>) {}
+    public static function colorConvertHSVtoRGB(h : Single, s : Single, v : Single, out_r : hl.Ref<Single>, out_g : hl.Ref<Single>, out_b : hl.Ref<Single>) {}
 
 	// internal functions
 	public static function initialize(render_fn:Dynamic->Void) : Dynamic {return null;}

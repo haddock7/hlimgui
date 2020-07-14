@@ -19,5 +19,7 @@ ImVec4 getImVec4(vdynamic* vec4, const ImVec4& default_value = ImVec4(0, 0, 0, 0
 vdynamic* getHLFromImVec2(ImVec2 value);
 vdynamic* getHLFromImVec4(ImVec4 value);
 
+vbyte* getVByteFromCStr(const char* str);
+
 inline void assertArraySize(varray* arr, int size) {if (arr->size != size) return hl_error("Invalid array size");}
 inline void assertArraySizeRange(varray* arr, int size_min, int size_max) {if (arr->size < size_min && arr->size > size_max) return hl_error("Invalid array size");}
