@@ -821,6 +821,47 @@ class ImGui
     public static function colorConvertRGBtoHSV(r : Single, g : Single, b : Single, out_h : hl.Ref<Single>, out_s : hl.Ref<Single>, out_v : hl.Ref<Single>) {}
     public static function colorConvertHSVtoRGB(h : Single, s : Single, v : Single, out_r : hl.Ref<Single>, out_g : hl.Ref<Single>, out_b : hl.Ref<Single>) {}
 
+    // Inputs Utilities: Keyboard
+    public static function getKeyIndex(imgui_key : ImGuiKey) : Int {return 0;}
+    public static function isKeyDown(user_key_index : Int) : Bool {return false;}
+    public static function isKeyPressed(user_key_index : Int, repeat : Bool = true) : Bool {return false;}
+    public static function isKeyReleased(user_key_index : Int) : Bool {return false;}
+    public static function getKeyPressedAmount(key_index : Int, repeat_delay : Single, rate : Single) : Int {return 0;}
+    public static function captureKeyboardFromApp(want_capture_keyboard_value : Bool = true) {}
+
+    // Inputs Utilities: Mouse
+    public static function isMouseDown(button : ImGuiMouseButton) : Bool {return false;}
+    public static function isMouseClicked(button : ImGuiMouseButton, repeat : Bool = false) : Bool {return false;}
+    public static function isMouseReleased(button : ImGuiMouseButton) : Bool {return false;}
+    public static function isMouseDoubleClicked(button : ImGuiMouseButton) : Bool {return false;}
+    public static function isMouseHoveringRect(r_min : ExtDynamic<ImVec2>, r_max : ExtDynamic<ImVec2>, clip : Bool = true) : Bool {return false;}
+    public static function isMousePosValid(mouse_pos : ExtDynamic<ImVec2> = null) : Bool {return false;}
+    public static function isAnyMouseDown() : Bool {return false;}
+    public static function getMousePos() : ExtDynamic<ImVec2> {return null;}
+    public static function getMousePosOnOpeningCurrentPopup() : ExtDynamic<ImVec2> {return null;}
+    public static function isMouseDragging(button : ImGuiMouseButton, lock_threshold : Single = -1.0) : Bool {return false;}
+    public static function getMouseDragDelta(button : ImGuiMouseButton = 0, lock_threshold : Single = -1.0) : ExtDynamic<ImVec2> {return null;}
+    public static function resetMouseDragDelta(button : ImGuiMouseButton = 0) {}
+    public static function getMouseCursor() : ImGuiMouseCursor {return 0;}
+    public static function setMouseCursor(cursor_type : ImGuiMouseCursor) {}
+    public static function captureMouseFromApp(want_capture_mouse_value : Bool = true) {}
+
+    // Clipboard Utilities
+	static function get_clipboard_text() : hl.Bytes {return null;}
+    public static function getClipboardText() : String {
+		return @:privateAccess String.fromUTF8(get_clipboard_text());
+	}
+    public static function setClipboardText(text : String) {}
+
+    // Settings/.Ini Utilities
+    public static function loadIniSettingsFromDisk(ini_filename : String) {}
+    public static function loadIniSettingsFromMemory(ini_data : String, ini_size : Int = 0) {}
+    public static function saveIniSettingsToDisk(ini_filename : String) {}
+	static function save_ini_settings_to_memory(out_ini_size : hl.Ref<Int>) : hl.Bytes {return null;}
+    public static function saveIniSettingsToMemory(out_ini_size : hl.Ref<Int> = null) : String {
+		return @:privateAccess String.fromUTF8(save_ini_settings_to_memory(out_ini_size));
+	}
+
 	// internal functions
 	public static function initialize(render_fn:Dynamic->Void) : Dynamic {return null;}
 	public static function setFontTexture(texture_id : Int) {}
