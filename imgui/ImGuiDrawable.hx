@@ -169,6 +169,7 @@ class ImGuiDrawable extends h2d.Drawable {
 	var keycode_map : Map<Int,Int>;
 	var wheel_inverted : Bool;
 	var textures : Array<Texture>;
+	private var scene_size : {width: Int, height:Int};
 
 	public function new(?parent) {
 		super(parent);
@@ -176,6 +177,7 @@ class ImGuiDrawable extends h2d.Drawable {
 
 		var scene = getScene();
 		ImGui.setDisplaySize(scene.width, scene.height);
+		this.scene_size = {width: scene.width, height:scene.width};
 		
 		this.keycode_map = [
 			Key.TAB => ImGuiKey.Tab,
@@ -222,6 +224,12 @@ class ImGuiDrawable extends h2d.Drawable {
 			Key.isPressed(Key.LCTRL) || Key.isPressed(Key.RCTRL), 
 			Key.isPressed(Key.LALT) || Key.isPressed(Key.RALT));
 		this.mouse_delta = 0;
+
+		var scene = getScene();
+		if (scene.width != this.scene_size.width || scene.height != this.scene_size.height) {
+			ImGui.setDisplaySize(scene.width, scene.height);
+			this.scene_size = {width: scene.width, height:scene.width};
+		}
 	}
 
 	private function onEvent(event: hxd.Event) {
@@ -232,26 +240,44 @@ class ImGuiDrawable extends h2d.Drawable {
 			case EPush:
 				if (event.button < 2) {
 					this.mouse_down[event.button] = true;
+					if (ImGui.wantCaptureMouse()) {
+						event.propagate = false;
+					}
 				}
 			case ERelease:
 				if (event.button < 2) {
 					this.mouse_down[event.button] = false;
+					if (ImGui.wantCaptureMouse()) {
+						event.propagate = false;
+					}
 				}
 			case EWheel:
 				this.mouse_delta = event.wheelDelta;
 				if (!this.wheel_inverted) {
 					this.mouse_delta = -this.mouse_delta;
+					if (ImGui.wantCaptureMouse()) {
+						event.propagate = false;
+					}
 				}
 			case EKeyDown:
 				if (this.keycode_map.exists(event.keyCode)) {
 					ImGui.setKeyState(this.keycode_map[event.keyCode], true);
+					if (ImGui.wantCaptureKeyboard()) {
+						event.propagate = false;
+					}
 				}
 			case EKeyUp:
 				if (this.keycode_map.exists(event.keyCode)) {
 					ImGui.setKeyState(this.keycode_map[event.keyCode], false);
+					if (ImGui.wantCaptureKeyboard()) {
+						event.propagate = false;
+					}
 				}
 			case ETextInput:
 				ImGui.addKeyChar(event.charCode);
+				if (ImGui.wantCaptureKeyboard()) {
+					event.propagate = false;
+				}
 			default:
 		}
 	}

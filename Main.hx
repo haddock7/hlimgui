@@ -8,6 +8,7 @@ class Main extends hxd.App
     var vslider_value : Int = 0;
     var input_int = new hl.NativeArray<Int>(2);
     var input_text_buffer = new hl.Bytes(128);
+    var color : Int = 0;
 
     override function init() 
     {
@@ -35,6 +36,20 @@ class Main extends hxd.App
             if (ImGui.inputText('Text', this.input_text_buffer, 128)) {
                 var st = @:privateAccess String.fromUTF8(this.input_text_buffer);
                 trace(st);
+            }
+
+            var rgba = new hl.NativeArray<Single>(4);
+            rgba[0] = (this.color & 0xFF)/255;
+            rgba[1] = ((this.color >> 8) & 0xFF)/255;
+            rgba[2] = ((this.color >> 16) & 0xFF)/255;
+            rgba[3] = (this.color >> 24)/255;
+    
+            if (ImGui.colorEdit4('Color', rgba)) {
+                this.color = 
+                    Math.round(rgba[0]*255) + 
+                    (Math.round(rgba[1]*255) << 8) + 
+                    (Math.round(rgba[2]*255) << 16) + 
+                    (Math.round(rgba[3]*255) << 24);
             }
 
             ImGui.end();

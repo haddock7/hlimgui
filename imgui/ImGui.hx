@@ -862,6 +862,11 @@ class ImGui
 		return @:privateAccess String.fromUTF8(save_ini_settings_to_memory(out_ini_size));
 	}
 
+	// IO
+	public static function wantCaptureMouse() : Bool {return false;}
+	public static function wantCaptureKeyboard() : Bool {return false;}
+	public static function setIniFilename(filename : String) {}
+
 	// internal functions
 	public static function initialize(render_fn:Dynamic->Void) : Dynamic {return null;}
 	public static function setFontTexture(texture_id : Int) {}
