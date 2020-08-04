@@ -863,8 +863,6 @@ class ImGui
 	}
 
 	// IO
-	public static function wantCaptureMouse() : Bool {return false;}
-	public static function wantCaptureKeyboard() : Bool {return false;}
 	public static function setIniFilename(filename : String) {}
 
 	// internal functions
@@ -875,4 +873,6 @@ class ImGui
 	public static function addKeyChar(c : Int) {}
 	public static function setEvents(dt : Single, mouse_x : Single, mouse_y : Single, wheel : Single, left_click : Bool, right_click : Bool) {}
 	public static function setDisplaySize(display_width:Int, display_height:Int) {}
+	public static function wantCaptureMouse() : Bool {return false;}
+	public static function wantCaptureKeyboard() : Bool {return false;}
 }
