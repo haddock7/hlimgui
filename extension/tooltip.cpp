@@ -16,7 +16,7 @@ HL_PRIM void HL_NAME(end_tooltip)()
 
 HL_PRIM void HL_NAME(set_tooltip)(vstring* fmt)
 {
-    ImGui::SetTooltip("%s", convertString(fmt));
+    ImGui::SetTooltip("%s", convertStringNullAsEmpty(fmt));
 }
 
 DEFINE_PRIM(_VOID, begin_tooltip, _NO_ARG);

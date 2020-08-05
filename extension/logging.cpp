@@ -31,7 +31,7 @@ HL_PRIM void HL_NAME(log_buttons)()
 
 HL_PRIM void HL_NAME(log_text)(vstring* text)
 {
-    ImGui::LogText("%s", convertString(text));
+    ImGui::LogText("%s", convertStringNullAsEmpty(text));
 }
 
 DEFINE_PRIM(_VOID, log_to_tty, _REF(_I32));
