@@ -8,6 +8,9 @@ project(${TARGET_NAME})
 file(GLOB SOURCES "*.cpp")
 file(GLOB IMGUI_SOURCES "imgui/*.cpp")
 
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 add_library(${TARGET_NAME}${TARGET_EXT} SHARED ${SOURCES} ${IMGUI_SOURCES})
 
 set_target_properties(${TARGET_NAME}${TARGET_EXT}
@@ -20,6 +23,8 @@ set_target_properties(${TARGET_NAME}${TARGET_EXT}
 IF (WIN32)
 target_include_directories(${TARGET_NAME}${TARGET_EXT} PUBLIC $ENV{HASHLINKPATH}/include)
 target_link_libraries(${TARGET_NAME}${TARGET_EXT} $ENV{HASHLINKPATH}/libhl.lib)
+ELSE()
+target_link_libraries(${TARGET_NAME}${TARGET_EXT} hl)
 ENDIF()
 
 add_custom_command(TARGET ${TARGET_NAME}${TARGET_EXT} POST_BUILD
