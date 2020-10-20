@@ -29,6 +29,12 @@ HL_PRIM void HL_NAME(set_ini_filename)(vstring* filename)
     ImGui::GetIO().IniFilename = ini_filename.c_str();
 }
 
+HL_PRIM void HL_NAME(set_config_flags)(ImGuiConfigFlags* flags)
+{
+    ImGui::GetIO().ConfigFlags = convertPtr(flags, 0);
+}
+
 DEFINE_PRIM(_BOOL, want_capture_mouse, _NO_ARG);
 DEFINE_PRIM(_BOOL, want_capture_keyboard, _NO_ARG);
 DEFINE_PRIM(_VOID, set_ini_filename, _STRING);
+DEFINE_PRIM(_VOID, set_config_flags, _REF(_I32));

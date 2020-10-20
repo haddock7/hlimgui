@@ -113,7 +113,6 @@ HL_PRIM vdynamic* HL_NAME(initialize)(vclosure* render_fn)
 	ImGuiIO& io = ImGui::GetIO();
 
 	// set render draw function
-	io.RenderDrawListsFn = renderDrawLists;
 	s_render_function = render_fn;
 	hl_add_root(&s_render_function);
 
@@ -202,6 +201,9 @@ HL_PRIM void HL_NAME(end_frame)()
 HL_PRIM void HL_NAME(render)()
 {
 	ImGui::Render();
+
+	ImDrawData* draw_data = ImGui::GetDrawData();
+	renderDrawLists(draw_data);
 }
 
 DEFINE_PRIM(_DYN, initialize, _FUN(_VOID, _DYN));
