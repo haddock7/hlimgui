@@ -39,9 +39,9 @@ HL_PRIM void HL_NAME(end_popup)()
     ImGui::EndPopup();                                                                                             
 }
 
-HL_PRIM bool HL_NAME(open_popup_on_item_click)(vstring* str_id, ImGuiMouseButton* mouse_button)
+HL_PRIM void HL_NAME(open_popup_on_item_click)(vstring* str_id, ImGuiMouseButton* mouse_button)
 {
-    return ImGui::OpenPopupOnItemClick(convertString(str_id), convertPtr(mouse_button, 1));
+    ImGui::OpenPopupOnItemClick(convertString(str_id), convertPtr(mouse_button, 1));
 }
 
 HL_PRIM bool HL_NAME(is_popup_open)(vstring* str_id)
@@ -61,6 +61,6 @@ DEFINE_PRIM(_BOOL, begin_popup_context_window, _STRING _REF(_I32) _REF(_BOOL));
 DEFINE_PRIM(_BOOL, begin_popup_context_void, _STRING _REF(_I32));
 DEFINE_PRIM(_BOOL, begin_popup_modal, _STRING _REF(_BOOL) _REF(_I32));
 DEFINE_PRIM(_VOID, end_popup, _NO_ARG);
-DEFINE_PRIM(_BOOL, open_popup_on_item_click, _STRING _REF(_I32));
+DEFINE_PRIM(_VOID, open_popup_on_item_click, _STRING _REF(_I32));
 DEFINE_PRIM(_BOOL, is_popup_open, _STRING);
 DEFINE_PRIM(_VOID, close_current_popup, _NO_ARG);

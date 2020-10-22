@@ -29,6 +29,17 @@ abstract ExtDynamic<T>(Dynamic) from T to T {}
 	var NoInputs : Int = 786944;
 }
 
+@:enum abstract ImGuiDockNodeFlags(Int) from Int to Int {
+	var None : Int = 0;
+	var KeepAliveOnly : Int = 1;
+	var NoCentralNode : Int = 2;
+	var NoDockingInCentralNode : Int = 4;
+	var NoSplit : Int = 8;
+	var NoResize : Int = 16;
+	var PassthruCentralNode : Int = 32;
+	var AutoHideTabBar : Int = 64;
+}
+
 @:enum abstract ImGuiTreeNodeFlags(Int) from Int to Int {
 	var None : Int = 0;
 	var Selected : Int = 1;
@@ -270,6 +281,8 @@ abstract ExtDynamic<T>(Dynamic) from T to T {}
 	var NavNoCaptureKeyboard : Int = 8;
 	var NoMouse : Int = 16;
 	var NoMouseCursorChange : Int = 32;
+	var DockingEnable : Int = 64;
+	var ViewportsEnable : Int = 1024;
 	var IsSRGB : Int = 1048576;
 	var IsTouchScreen : Int = 2097152;
 }
@@ -464,7 +477,7 @@ typedef ImGuiStyle = {
     GrabRounding : Single,
     TabRounding : Single,
     TabBorderSize : Single,
-    TabMinWidthForUnselectedCloseButton : Single,
+    TabMinWidthForCloseButton : Single,
     ColorButtonPosition : ImGuiDir,
     ButtonTextAlign : ImVec2,
     SelectableTextAlign : ImVec2,
@@ -549,6 +562,8 @@ class ImGui
     public static function setWindowSize2(name : String, size : ExtDynamic<ImVec2>, cond : ImGuiCond = 0) {}
     public static function setWindowCollapsed2(name : String, collapsed : Bool, cond : ImGuiCond = 0) {}
 	public static function setWindowFocus2(name : String) {}
+
+	public static function dockSpace(id : Int, size : ExtDynamic<ImVec2> = null, flags : ImGuiDockNodeFlags = 0) {}
 	
 	// Content region
 	public static function getContentRegionMax() : ExtDynamic<ImVec2> {return null;}
@@ -743,7 +758,7 @@ class ImGui
     public static function beginPopupContextVoid(str_id : String = null, mouse_button : ImGuiMouseButton= 1) : Bool {return false;}
     public static function beginPopupModal(name : String, p_open : hl.Ref<Bool> = null, flags : ImGuiWindowFlags = 0) : Bool {return false;}
     public static function endPopup() {}
-    public static function openPopupOnItemClick(str_id : String = null, mouse_button : ImGuiMouseButton = 1) : Bool {return false;}
+    public static function openPopupOnItemClick(str_id : String = null, mouse_button : ImGuiMouseButton = 1) : Void {}
     public static function isPopupOpen(str_id : String) : Bool {return false;}
 	public static function closeCurrentPopup() {}
 	
@@ -875,4 +890,5 @@ class ImGui
 	public static function setDisplaySize(display_width:Int, display_height:Int) {}
 	public static function wantCaptureMouse() : Bool {return false;}
 	public static function wantCaptureKeyboard() : Bool {return false;}
+	public static function setConfigFlags(flags:ImGuiConfigFlags = 0) : Void {}
 }

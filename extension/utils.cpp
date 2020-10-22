@@ -142,7 +142,7 @@ ImGuiStyle getImGuiStyleFromHL(vdynamic* style)
 	getStructFloat(style, "GrabRounding", imgui_style.GrabRounding);
 	getStructFloat(style, "TabRounding", imgui_style.TabRounding);
 	getStructFloat(style, "TabBorderSize", imgui_style.TabBorderSize);
-	getStructFloat(style, "TabMinWidthForUnselectedCloseButton", imgui_style.TabMinWidthForUnselectedCloseButton);
+	getStructFloat(style, "TabMinWidthForCloseButton", imgui_style.TabMinWidthForCloseButton);
 	getStructInt(style, "ColorButtonPosition", imgui_style.ColorButtonPosition);
 	getStructImVec2(style, "ButtonTextAlign", imgui_style.ButtonTextAlign);
 	getStructImVec2(style, "SelectableTextAlign", imgui_style.SelectableTextAlign);
@@ -187,7 +187,7 @@ vdynamic* getHLFromImGuiStyle(const ImGuiStyle& imgui_style)
 	setStructFloat(style, "GrabRounding", imgui_style.GrabRounding);
 	setStructFloat(style, "TabRounding", imgui_style.TabRounding);
 	setStructFloat(style, "TabBorderSize", imgui_style.TabBorderSize);
-	setStructFloat(style, "TabMinWidthForUnselectedCloseButton", imgui_style.TabMinWidthForUnselectedCloseButton);
+	setStructFloat(style, "TabMinWidthForCloseButton", imgui_style.TabMinWidthForCloseButton);
 	setStructInt(style, "ColorButtonPosition", imgui_style.ColorButtonPosition);
 	setStructImVec2(style, "ButtonTextAlign", imgui_style.ButtonTextAlign);
 	setStructImVec2(style, "SelectableTextAlign", imgui_style.SelectableTextAlign);
