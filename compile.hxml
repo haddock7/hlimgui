@@ -1,3 +1,4 @@
+-cp src
 -lib heaps
 -lib hlsdl
 -hl imgui.hl
