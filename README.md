@@ -48,7 +48,7 @@ if (ImGui.inputText('Text', input_text_buffer, 128)) {
 ```
 - The function `setIniFilename` doesn't exist in ImGui, it has been added to modify the filename of the default ini file saved by ImGui (pass null to turn off this feature).
 
-- Due to type conversions between Haxe and ImGui, editting the object returned from `getStyle` does not immediately update the default styles. The `setStyle` method has been added to provide that functionality. For example:
+- Due to type conversions between Haxe and ImGui, editing the object returned from `getStyle` does not immediately update the default styles. The `setStyle` method has been added to provide that functionality. For example:
 ```haxe
 var style:ImGuiStyle = ImGui.getStyle();
 style.WindowBorderSize = 0;
