@@ -505,6 +505,7 @@ class ImGui
 	
 	// Main
 	public static function getStyle() : ExtDynamic<ImGuiStyle> {return null;}
+	public static function setStyle(style : ExtDynamic<ImGuiStyle>) {}
 	public static function newFrame() {}
 	public static function endFrame() {}
 	public static function render() {}
