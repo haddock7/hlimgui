@@ -153,12 +153,13 @@ HL_PRIM void HL_NAME(set_key_state)(int key, bool down)
 	io.KeysDown[key] = down;
 }
 
-HL_PRIM void HL_NAME(set_special_key_state)(bool shift, bool ctrl, bool alt)
+HL_PRIM void HL_NAME(set_special_key_state)(bool shift, bool ctrl, bool alt, bool super)
 {
 	ImGuiIO& io = ImGui::GetIO();
 	io.KeyShift = shift;
 	io.KeyCtrl = ctrl;
 	io.KeyAlt = alt;
+	io.KeySuper = super;
 }
 
 HL_PRIM void HL_NAME(add_key_char)(int c)
@@ -218,7 +219,7 @@ DEFINE_PRIM(_VOID, set_font_texture, _I32);
 DEFINE_PRIM(_VOID, set_key_state, _I32 _BOOL);
 DEFINE_PRIM(_VOID, add_key_char, _I32);
 DEFINE_PRIM(_VOID, set_events, _F32 _F32 _F32 _F32 _BOOL _BOOL);
-DEFINE_PRIM(_VOID, set_special_key_state, _BOOL _BOOL _BOOL);
+DEFINE_PRIM(_VOID, set_special_key_state, _BOOL _BOOL _BOOL _BOOL);
 DEFINE_PRIM(_VOID, set_display_size, _I32 _I32);
 
 DEFINE_PRIM(_DYN, get_style, _NO_ARG);
