@@ -220,9 +220,10 @@ class ImGuiDrawable extends h2d.Drawable {
 	public function update(dt:Float) {
 		ImGui.setEvents(dt, this.mouse_x, this.mouse_y, this.mouse_delta, mouse_down[0], mouse_down[1]);
 		ImGui.setSpecialKeyState(
-			Key.isPressed(Key.LSHIFT) || Key.isPressed(Key.RSHIFT), 
-			Key.isPressed(Key.LCTRL) || Key.isPressed(Key.RCTRL), 
-			Key.isPressed(Key.LALT) || Key.isPressed(Key.RALT));
+			Key.isDown(Key.LSHIFT) || Key.isDown(Key.RSHIFT), 
+			Key.isDown(Key.LCTRL) || Key.isDown(Key.RCTRL), 
+			Key.isDown(Key.LALT) || Key.isDown(Key.RALT),
+			Key.isDown(Key.LEFT_WINDOW_KEY) || Key.isDown(Key.RIGHT_WINDOW_KEY));
 		this.mouse_delta = 0;
 
 		var scene = getScene();

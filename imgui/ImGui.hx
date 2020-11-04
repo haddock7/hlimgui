@@ -832,8 +832,8 @@ class ImGui
 	public static function calcTextSize(text : String, text_end : String = null, hide_text_after_double_hash : Bool = false, wrap_width : Single = -1.0) : ExtDynamic<ImVec2> {return null;}
 
     // Color Utilities
-    public static function colorConvertU32ToFloat4(color : ImU32) : ExtDynamic<ImVec2> {return null;}
-    public static function colorConvertFloat4ToU32(color : ExtDynamic<ImVec2>) : ImU32 {return 0;}
+    public static function colorConvertU32ToFloat4(color : ImU32) : ExtDynamic<ImVec4> {return null;}
+    public static function colorConvertFloat4ToU32(color : ExtDynamic<ImVec4>) : ImU32 {return 0;}
     public static function colorConvertRGBtoHSV(r : Single, g : Single, b : Single, out_h : hl.Ref<Single>, out_s : hl.Ref<Single>, out_v : hl.Ref<Single>) {}
     public static function colorConvertHSVtoRGB(h : Single, s : Single, v : Single, out_r : hl.Ref<Single>, out_g : hl.Ref<Single>, out_b : hl.Ref<Single>) {}
 
@@ -885,7 +885,7 @@ class ImGui
 	public static function initialize(render_fn:Dynamic->Void) : Dynamic {return null;}
 	public static function setFontTexture(texture_id : Int) {}
 	public static function setKeyState(key : Int, down : Bool) {}
-	public static function setSpecialKeyState(shift : Bool, ctrl : Bool, alt : Bool) {}
+	public static function setSpecialKeyState(shift : Bool, ctrl : Bool, alt : Bool, super : Bool) {}
 	public static function addKeyChar(c : Int) {}
 	public static function setEvents(dt : Single, mouse_x : Single, mouse_y : Single, wheel : Single, left_click : Bool, right_click : Bool) {}
 	public static function setDisplaySize(display_width:Int, display_height:Int) {}
