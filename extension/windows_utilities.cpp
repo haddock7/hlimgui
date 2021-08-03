@@ -24,12 +24,12 @@ HL_PRIM bool HL_NAME(is_window_hovered)(ImGuiFocusedFlags* flags)
 	return ImGui::IsWindowHovered(convertPtr(flags, 0));
 }
 
-HL_PRIM bool HL_NAME(get_window_pos)()
+HL_PRIM vdynamic* HL_NAME(get_window_pos)()
 {
 	return getHLFromImVec2(ImGui::GetWindowPos());
 }
 
-HL_PRIM bool HL_NAME(get_window_size)()
+HL_PRIM vdynamic* HL_NAME(get_window_size)()
 {
 	return getHLFromImVec2(ImGui::GetWindowSize());
 }

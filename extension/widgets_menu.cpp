@@ -26,7 +26,7 @@ HL_PRIM void HL_NAME(end_main_menu_bar)()
 
 HL_PRIM bool HL_NAME(begin_menu)(vstring* label, bool* enabled)
 {
-    return ImGui::BeginMenu(convertString(label), convertPtr(enabled, false));
+    return ImGui::BeginMenu(convertString(label), convertPtr(enabled, true));
 }
 
 HL_PRIM void HL_NAME(end_menu)()
